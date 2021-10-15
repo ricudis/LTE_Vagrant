@@ -1,0 +1,435 @@
+diff --git a/cmake_targets/CMakeLists.txt b/cmake_targets/CMakeLists.txt
+index 9592334125..c22ac8ec77 100644
+--- a/cmake_targets/CMakeLists.txt
++++ b/cmake_targets/CMakeLists.txt
+@@ -2702,13 +2702,13 @@ set(XFORMSINTERFACE_SOURCE
+   )
+ set(XFORMS_LIBRARIES "forms")
+ 
+-add_library(enbscope MODULE ${XFORMS_SOURCE} ${XFORMS_SOURCE_SOFTMODEM} ${XFORMS_ENB_SOURCE})
+-add_library(uescope MODULE ${XFORMS_SOURCE} ${XFORMS_SOURCE_SOFTMODEM} ${XFORMS_UE_SOURCE})
+-target_link_libraries(enbscope ${XFORMS_LIBRARIES})
+-target_link_libraries(uescope ${XFORMS_LIBRARIES})
++# add_library(enbscope MODULE ${XFORMS_SOURCE} ${XFORMS_SOURCE_SOFTMODEM} ${XFORMS_ENB_SOURCE})
++# add_library(uescope MODULE ${XFORMS_SOURCE} ${XFORMS_SOURCE_SOFTMODEM} ${XFORMS_UE_SOURCE})
++# target_link_libraries(enbscope ${XFORMS_LIBRARIES})
++# target_link_libraries(uescope ${XFORMS_LIBRARIES})
+ 
+-add_library(nrscope MODULE ${XFORMS_SOURCE_NR})
+-target_link_libraries(nrscope ${XFORMS_LIBRARIES})
++# add_library(nrscope MODULE ${XFORMS_SOURCE_NR})
++# target_link_libraries(nrscope ${XFORMS_LIBRARIES})
+ 
+ 
+ add_library(rfsimulator MODULE
+@@ -2823,7 +2823,6 @@ add_executable(lte-softmodem
+   ${OPENAIR_DIR}/common/utils/system.c
+   ${OPENAIR_DIR}/common/utils/lte/ue_power.c
+   ${OPENAIR_DIR}/common/utils/lte/prach_utils.c
+-  ${XFORMSINTERFACE_SOURCE}
+   ${T_SOURCE}
+   ${CONFIG_SOURCES}
+   ${SHLIB_LOADER_SOURCES}
+@@ -2865,7 +2864,6 @@ add_executable(ocp-enb
+   ${OPENAIR_DIR}/common/utils/system.c
+   ${OPENAIR_DIR}/common/utils/lte/ue_power.c
+   ${OPENAIR_DIR}/common/utils/lte/prach_utils.c
+-  ${XFORMSINTERFACE_SOURCE}
+   ${T_SOURCE}
+   ${CONFIG_SOURCES}
+   ${SHLIB_LOADER_SOURCES}
+@@ -2957,7 +2955,6 @@ add_executable(lte-uesoftmodem
+   ${OPENAIR_DIR}/common/utils/system.c
+   ${OPENAIR_DIR}/common/utils/lte/ue_power.c
+   ${OPENAIR_DIR}/common/utils/lte/prach_utils.c
+-  ${XFORMSINTERFACE_SOURCE}
+   ${T_SOURCE}
+   ${CONFIG_SOURCES}
+   ${SHLIB_LOADER_SOURCES}
+@@ -3006,7 +3003,6 @@ add_executable(nr-softmodem
+   ${OPENAIR_DIR}/common/utils/lte/ue_power.c
+   ${OPENAIR_DIR}/common/utils/lte/prach_utils.c
+   ${OPENAIR_DIR}/common/utils/nr/nr_common.c
+-  ${XFORMSINTERFACE_SOURCE}
+   ${T_SOURCE}
+   ${CONFIG_SOURCES}
+   ${SHLIB_LOADER_SOURCES}
+@@ -3023,7 +3019,7 @@ target_link_libraries (nr-softmodem
+   -Wl,--end-group z dl)
+ 
+ target_link_libraries (nr-softmodem ${LIBXML2_LIBRARIES})
+-target_link_libraries (nr-softmodem pthread m ${CONFIG_LIB} rt crypt ${CRYPTO_LIBRARIES} ${OPENSSL_LIBRARIES} sctp  ${XFORMS_LIBRARIES} ${PROTOBUF_LIB}  ${CMAKE_DL_LIBS} ${LIBYAML_LIBRARIES} ${ATLAS_LIBRARIES})
++target_link_libraries (nr-softmodem pthread m ${CONFIG_LIB} rt crypt ${CRYPTO_LIBRARIES} ${OPENSSL_LIBRARIES} sctp ${PROTOBUF_LIB}  ${CMAKE_DL_LIBS} ${LIBYAML_LIBRARIES} ${ATLAS_LIBRARIES})
+ target_link_libraries (nr-softmodem ${LIB_LMS_LIBRARIES})
+ target_link_libraries (nr-softmodem ${T_LIB})
+ 
+@@ -3046,11 +3042,9 @@ add_executable(ocp-gnb
+   ${OPENAIR_DIR}/common/utils/nr/nr_common.c
+   ${OPENAIR_DIR}/common/utils/utils.c
+   ${OPENAIR_DIR}/common/utils/system.c
+-  ${XFORMS_SOURCE_NR}
+   ${T_SOURCE}
+   ${CONFIG_SOURCES}
+   ${SHLIB_LOADER_SOURCES}
+-  ${XFORMSINTERFACE_SOURCE}
+   )
+ 
+ target_link_libraries (ocp-gnb
+@@ -3062,10 +3056,10 @@ target_link_libraries (ocp-gnb
+   -Wl,--end-group z dl)
+ 
+ target_link_libraries (ocp-gnb ${LIBXML2_LIBRARIES} )
+-target_link_libraries (ocp-gnb pthread m ${CONFIG_LIB} rt crypt ${CRYPTO_LIBRARIES} ${OPENSSL_LIBRARIES} sctp  ${XFORMS_LIBRARIES} ${PROTOBUF_LIB}  ${CMAKE_DL_LIBS} ${LIBYAML_LIBRARIES} ${ATLAS_LIBRARIES})
++target_link_libraries (ocp-gnb pthread m ${CONFIG_LIB} rt crypt ${CRYPTO_LIBRARIES} ${OPENSSL_LIBRARIES} sctp ${PROTOBUF_LIB}  ${CMAKE_DL_LIBS} ${LIBYAML_LIBRARIES} ${ATLAS_LIBRARIES})
+ target_link_libraries (ocp-gnb ${LIB_LMS_LIBRARIES})
+ target_link_libraries (ocp-gnb ${T_LIB})
+-add_dependencies(ocp-gnb ldpc_orig ldpc_optim ldpc_optim8seg ldpc params_libconfig rfsimulator oai_usrpdevif rfsimulator nrscope)
++add_dependencies(ocp-gnb ldpc_orig ldpc_optim ldpc_optim8seg ldpc params_libconfig rfsimulator oai_usrpdevif rfsimulator)
+ 
+ 
+ # nr-uesoftmodem is  UE implementation
+@@ -3090,7 +3084,6 @@ add_executable(nr-uesoftmodem
+   ${OPENAIR_DIR}/common/utils/utils.c
+   ${OPENAIR_DIR}/common/utils/system.c
+   ${OPENAIR_DIR}/common/utils/nr/nr_common.c
+-  ${XFORMSINTERFACE_SOURCE}
+   ${T_SOURCE}
+   ${UTIL_SRC}
+   ${CONFIG_SOURCES}
+@@ -3108,7 +3101,7 @@ target_link_libraries (nr-uesoftmodem
+   -Wl,--end-group z dl)
+ 
+ target_link_libraries (nr-uesoftmodem ${LIBXML2_LIBRARIES})
+-target_link_libraries (nr-uesoftmodem pthread m ${CONFIG_LIB} rt crypt ${CRYPTO_LIBRARIES} ${OPENSSL_LIBRARIES} sctp  ${XFORMS_LIBRARIES} ${PROTOBUF_LIB}  ${CMAKE_DL_LIBS} ${LIBYAML_LIBRARIES} ${ATLAS_LIBRARIES})
++target_link_libraries (nr-uesoftmodem pthread m ${CONFIG_LIB} rt crypt ${CRYPTO_LIBRARIES} ${OPENSSL_LIBRARIES} sctp ${PROTOBUF_LIB}  ${CMAKE_DL_LIBS} ${LIBYAML_LIBRARIES} ${ATLAS_LIBRARIES})
+ target_link_libraries (nr-uesoftmodem ${LIB_LMS_LIBRARIES})
+ target_link_libraries (nr-uesoftmodem ${T_LIB})
+ 
+@@ -3143,7 +3136,7 @@ add_executable(rftest
+   ${CONFIG_SOURCES}
+   ${SHLIB_LOADER_SOURCES}
+ )
+-target_link_libraries(rftest minimal_lib PHY_NR_COMMON pthread dl m forms ${T_LIB} )
++target_link_libraries(rftest minimal_lib PHY_NR_COMMON pthread dl m ${T_LIB} )
+ 
+ add_executable(polartest
+   ${OPENAIR1_DIR}/PHY/CODING/TESTBENCH/polartest.c
+@@ -3348,7 +3341,6 @@ foreach(myExe dlsim dlsim_tm7 ulsim pbchsim scansim mbmssim pdcchsim pucchsim pr
+     ${OPENAIR_DIR}/common/utils/lte/ue_power.c
+     ${OPENAIR_DIR}/common/utils/lte/prach_utils.c
+     ${OPENAIR1_DIR}/PHY/INIT/lte_param_init.c
+-    ${XFORMS_SOURCE}
+     ${T_SOURCE}
+     ${CONFIG_SOURCES}
+     ${SHLIB_LOADER_SOURCES}
+@@ -3356,7 +3348,7 @@ foreach(myExe dlsim dlsim_tm7 ulsim pbchsim scansim mbmssim pdcchsim pucchsim pr
+     )
+   target_link_libraries (${myExe}
+     -Wl,--start-group SIMU_COMMON SIMU UTIL SCHED_LIB SCHED_RU_LIB SCHED_UE_LIB PHY_COMMON PHY_NR_COMMON PHY PHY_UE PHY_RU LFDS ITTI LFDS7 -Wl,--end-group
+-    pthread m rt ${CONFIG_LIB} ${ATLAS_LIBRARIES}  ${XFORMS_LIBRARIES} ${T_LIB} dl
++    pthread m rt ${CONFIG_LIB} ${ATLAS_LIBRARIES} ${T_LIB} dl
+     )
+ 
+ endforeach(myExe)
+@@ -3535,7 +3527,6 @@ add_executable(nr-ittisim
+   ${OPENAIR_DIR}/common/utils/lte/ue_power.c
+   ${OPENAIR_DIR}/common/utils/lte/prach_utils.c
+   ${OPENAIR2_DIR}/ENB_APP/flexran_agent_ran_api_to_fix.c
+-  ${XFORMSINTERFACE_SOURCE}
+   ${T_SOURCE}
+   ${CONFIG_SOURCES}
+   ${SHLIB_LOADER_SOURCES}
+@@ -3552,7 +3543,7 @@ target_link_libraries (nr-ittisim
+   -Wl,--end-group z dl)
+ 
+ target_link_libraries (nr-ittisim ${LIBXML2_LIBRARIES})
+-target_link_libraries (nr-ittisim pthread m ${CONFIG_LIB} rt crypt ${CRYPTO_LIBRARIES} ${OPENSSL_LIBRARIES} ${NETTLE_LIBRARIES} sctp  ${XFORMS_LIBRARIES} ${PROTOBUF_LIB}  ${CMAKE_DL_LIBS} ${LIBYAML_LIBRARIES} ${ATLAS_LIBRARIES})
++target_link_libraries (nr-ittisim pthread m ${CONFIG_LIB} rt crypt ${CRYPTO_LIBRARIES} ${OPENSSL_LIBRARIES} ${NETTLE_LIBRARIES} sctp ${PROTOBUF_LIB}  ${CMAKE_DL_LIBS} ${LIBYAML_LIBRARIES} ${ATLAS_LIBRARIES})
+ target_link_libraries (nr-ittisim ${LIB_LMS_LIBRARIES})
+ target_link_libraries (nr-ittisim ${T_LIB})
+ 
+diff --git a/cmake_targets/install_external_packages.ubuntu20 b/cmake_targets/install_external_packages.ubuntu20
+index f0314ca575..05e3b229e1 100755
+--- a/cmake_targets/install_external_packages.ubuntu20
++++ b/cmake_targets/install_external_packages.ubuntu20
+@@ -347,43 +347,45 @@ check_install_ubuntu_packages() {
+               dialog \
+               dkms \
+               gawk \
+-              libboost-all-dev \
++              libboost-dev \
++	libboost-filesystem-dev \
++	libboost-program-options-dev \
++	libboost-system-dev \
++	libboost-thread-dev \
++	libboost-atomic-dev \
++	libboost-container-dev \
++	libboost-context-dev \
++	libboost-contract-dev \
++	libboost-coroutine-dev \
++	libboost-date-time-dev \
++	libboost-exception-dev \
++	libboost-fiber-dev \
++	libboost-tools-dev \
+               libpthread-stubs0-dev \
+-              openvpn \
+               pkg-config \
+               python3-dev  \
+-              sshfs \
+               swig  \
+-              tshark \
+               uml-utilities \
+               unzip  \
+-              valgrind  \
+               vlan      \
+               exuberant-ctags \
+               ntpdate \
+               iperf3 \
+               android-tools-adb \
+-              wvdial \
+               sshpass \
+               nscd \
+               bc \
+               ntp \
+-              python3-scipy \
+-              python3-matplotlib \
+ 	      bison  \
+ 	      build-essential \
+ 	      cmake \
+-	      cmake-curses-gui  \
+               ninja-build \
+ 	      doxygen \
+-	      doxygen-gui \
+-	      texlive-latex-base \
+ 	      ethtool \
+ 	      flex  \
+ 	      gdb  \
+ 	      git \
+ 	      graphviz \
+-	      gtkwave \
+ 	      iperf \
+ 	      iptables \
+ 	      libxtables-dev \
+@@ -392,11 +394,8 @@ check_install_ubuntu_packages() {
+ 	      liblapack-dev\
+ 	      liblapacke-dev\
+ 	      libffi-dev \
+-	      libforms-bin \
+-	      libforms-dev \
+ 	      libgcrypt20-dev \
+ 	      libgmp-dev \
+-	      libgtk-3-dev \
+ 	      libidn2-0-dev  \
+ 	      libidn11-dev \
+ 	      libmysqlclient-dev  \
+@@ -409,8 +408,6 @@ check_install_ubuntu_packages() {
+ 	      libxml2 \
+ 	      libxml2-dev  \
+ 	      libxslt1-dev \
+-	      mscgen  \
+-	      octave-signal \
+ 	      openssh-client \
+ 	      openssh-server \
+ 	      openssl \
+@@ -421,7 +418,6 @@ check_install_ubuntu_packages() {
+ 	      libyaml-dev \
+ 	      wget \
+ 	      libxpm-dev \
+-              libboost-all-dev \
+ 	      nettle-dev \
+ 	      nettle-bin \
+               libreadline-dev
+diff --git a/executables/main-ocp.c b/executables/main-ocp.c
+index 0355582b2b..f67cf9f3c3 100644
+--- a/executables/main-ocp.c
++++ b/executables/main-ocp.c
+@@ -1333,8 +1333,8 @@ int main ( int argc, char **argv ) {
+ 
+   // end of CI modifications
+   //getchar();
+-  if(IS_SOFTMODEM_DOSCOPE)
+-    load_softscope("enb", NULL);
++//  if(IS_SOFTMODEM_DOSCOPE)
++//    load_softscope("enb", NULL);
+ 
+   itti_wait_tasks_end();
+   oai_exit=1;
+@@ -1342,8 +1342,8 @@ int main ( int argc, char **argv ) {
+   // stop threads
+ 
+   if (RC.nb_inst == 0 || !NODE_IS_CU(node_type)) {
+-    if(IS_SOFTMODEM_DOSCOPE)
+-      end_forms();
++//    if(IS_SOFTMODEM_DOSCOPE)
++//      end_forms();
+ 
+     LOG_I(ENB_APP,"stopping MODEM threads\n");
+     stop_eNB(NB_eNB_INST);
+diff --git a/executables/nr-ru.c b/executables/nr-ru.c
+index 2de04f4e7f..63adacbde6 100644
+--- a/executables/nr-ru.c
++++ b/executables/nr-ru.c
+@@ -1342,8 +1342,8 @@ void *ru_thread( void *param ) {
+           memcpy((void *)RC.gNB[0]->common_vars.rxdataF[aa],
+                  (void *)ru->common.rxdataF[aa], fp->symbols_per_slot*fp->ofdm_symbol_size*sizeof(int32_t));
+ 
+-        if (IS_SOFTMODEM_DOSCOPE && RC.gNB[0]->scopeData)
+-          ((scopeData_t *)RC.gNB[0]->scopeData)->slotFunc(ru->common.rxdataF[0],proc->tti_rx, RC.gNB[0]->scopeData);
++//        if (IS_SOFTMODEM_DOSCOPE && RC.gNB[0]->scopeData)
++//          ((scopeData_t *)RC.gNB[0]->scopeData)->slotFunc(ru->common.rxdataF[0],proc->tti_rx, RC.gNB[0]->scopeData);
+ 
+         // Do PRACH RU processing
+         int prach_id=find_nr_prach_ru(ru,proc->frame_rx,proc->tti_rx,SEARCH_EXIST);
+diff --git a/executables/nr-softmodem.c b/executables/nr-softmodem.c
+index 1b33667b13..91483bb41d 100644
+--- a/executables/nr-softmodem.c
++++ b/executables/nr-softmodem.c
+@@ -796,15 +796,15 @@ int main( int argc, char **argv ) {
+     // once all RUs are ready initialize the rest of the gNBs ((dependence on final RU parameters after configuration)
+     printf("ALL RUs ready - init gNBs\n");
+ 
+-    if(IS_SOFTMODEM_DOSCOPE) {
+-      sleep(1);
+-      scopeParms_t p;
+-      p.argc=&argc;
+-      p.argv=argv;
+-      p.gNB=RC.gNB[0];
+-      p.ru=RC.ru[0];
+-      load_softscope("nr",&p);
+-    }
++//    if(IS_SOFTMODEM_DOSCOPE) {
++//      sleep(1);
++//      scopeParms_t p;
++//      p.argc=&argc;
++//      p.argv=argv;
++//      p.gNB=RC.gNB[0];
++//      p.ru=RC.ru[0];
++//      load_softscope("nr",&p);
++//    }
+ 
+     if (NFAPI_MODE != NFAPI_MODE_PNF && NFAPI_MODE != NFAPI_MODE_VNF) {
+       printf("Not NFAPI mode - call init_eNB_afterRU()\n");
+diff --git a/executables/nr-uesoftmodem.c b/executables/nr-uesoftmodem.c
+index 0af1de0833..002b711597 100644
+--- a/executables/nr-uesoftmodem.c
++++ b/executables/nr-uesoftmodem.c
+@@ -502,9 +502,9 @@ int main( int argc, char **argv ) {
+   configure_linux();
+   mlockall(MCL_CURRENT | MCL_FUTURE);
+  
+-  if(IS_SOFTMODEM_DOSCOPE) {
+-    load_softscope("nr",PHY_vars_UE_g[0][0]);
+-  }     
++//  if(IS_SOFTMODEM_DOSCOPE) {
++//    load_softscope("nr",PHY_vars_UE_g[0][0]);
++//  }     
+ 
+   
+   init_NR_UE_threads(1);
+diff --git a/executables/ocp-gnb.c b/executables/ocp-gnb.c
+index 326f7d277f..fd27cbeaed 100644
+--- a/executables/ocp-gnb.c
++++ b/executables/ocp-gnb.c
+@@ -993,10 +993,10 @@ int main( int argc, char **argv ) {
+                  (void *)NULL, "time_meas", -1, OAI_PRIORITY_RT_LOW);
+   }
+ 
+-  if(IS_SOFTMODEM_DOSCOPE) {
+-    scopeParms_t tmp= {&argc, argv, &ru, RC.gNB[0]};
+-    load_softscope("nr",&tmp);
+-  }
++//  if(IS_SOFTMODEM_DOSCOPE) {
++//    scopeParms_t tmp= {&argc, argv, &ru, RC.gNB[0]};
++//    load_softscope("nr",&tmp);
++//  }
+ 
+   while(!oai_exit)
+     sleep(1);
+diff --git a/executables/softmodem-common.c b/executables/softmodem-common.c
+index e10515ea1a..f808daa142 100644
+--- a/executables/softmodem-common.c
++++ b/executables/softmodem-common.c
+@@ -146,9 +146,9 @@ void get_common_options(uint32_t execmask) {
+     set_softmodem_optmask(SOFTMODEM_BASICSIM_BIT);
+   }
+ 
+-  if (do_forms) {
+-    set_softmodem_optmask(SOFTMODEM_DOSCOPE_BIT);
+-  }
++//  if (do_forms) {
++//    set_softmodem_optmask(SOFTMODEM_DOSCOPE_BIT);
++//  }
+ 
+   if(parallel_config != NULL) set_parallel_conf(parallel_config);
+ 
+diff --git a/executables/stats.h b/executables/stats.h
+index 9bd4c6f080..a01f2c3090 100644
+--- a/executables/stats.h
++++ b/executables/stats.h
+@@ -24,6 +24,8 @@
+ #ifndef _EXECUTABLES_STATS_H_
+ #define _EXECUTABLES_STATS_H_
+ 
++#if 0
++
+ #include <forms.h>
+ 
+ /* Callbacks, globals and object handlers */
+@@ -43,4 +45,6 @@ typedef struct {
+ 
+ extern FD_stats_form *create_form_stats_form( void );
+ 
++#endif
++
+ #endif /* _EXECUTABLES_STATS_H_ */
+diff --git a/targets/RT/USER/lte-softmodem.c b/targets/RT/USER/lte-softmodem.c
+index a67b58d61a..28b07ec444 100644
+--- a/targets/RT/USER/lte-softmodem.c
++++ b/targets/RT/USER/lte-softmodem.c
+@@ -743,16 +743,16 @@ int main ( int argc, char **argv )
+   fflush(stderr);
+   // end of CI modifications
+   //getchar();
+-  if(IS_SOFTMODEM_DOSCOPE)
+-     load_softscope("enb",NULL);
++//  if(IS_SOFTMODEM_DOSCOPE)
++//     load_softscope("enb",NULL);
+   itti_wait_tasks_end();
+   oai_exit=1;
+   LOG_I(ENB_APP,"oai_exit=%d\n",oai_exit);
+   // stop threads
+ 
+   if (RC.nb_inst == 0 || !NODE_IS_CU(node_type)) {
+-    if(IS_SOFTMODEM_DOSCOPE)
+-      end_forms();
++//    if(IS_SOFTMODEM_DOSCOPE)
++//      end_forms();
+ 
+     LOG_I(ENB_APP,"stopping MODEM threads\n");
+     stop_eNB(NB_eNB_INST);
+diff --git a/targets/RT/USER/lte-uesoftmodem.c b/targets/RT/USER/lte-uesoftmodem.c
+index 25bbef0bc6..23aaf309c6 100644
+--- a/targets/RT/USER/lte-uesoftmodem.c
++++ b/targets/RT/USER/lte-uesoftmodem.c
+@@ -745,8 +745,8 @@ int main( int argc, char **argv ) {
+   //p_exmimo_config->framing.tdd_config = TXRXSWITCH_TESTRX;
+ 
+ 
+-  if(IS_SOFTMODEM_DOSCOPE)
+-    load_softscope("ue",NULL);
++//  if(IS_SOFTMODEM_DOSCOPE)
++//    load_softscope("ue",NULL);
+ 
+   config_check_unknown_cmdlineopt(CONFIG_CHECKALLSECTIONS);
+   printf("Sending sync to all threads (%p,%p,%p)\n",&sync_var,&sync_cond,&sync_mutex);
+@@ -771,8 +771,8 @@ int main( int argc, char **argv ) {
+   printf("oai_exit=%d\n",oai_exit);
+ 
+   // stop threads
+-  if(IS_SOFTMODEM_DOSCOPE)
+-    end_forms();
++//  if(IS_SOFTMODEM_DOSCOPE)
++//    end_forms();
+ 
+   printf("stopping MODEM threads\n");
+   pthread_cond_destroy(&sync_cond);

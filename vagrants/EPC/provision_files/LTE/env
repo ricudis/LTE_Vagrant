@@ -1,0 +1,37 @@
+export LTE_BASEDIR=/opt/LTE/
+
+export LTE_IP_brepc=10.99.90.1
+export LTE_IP_mongo=10.99.90.1
+
+export LTE_IP_epc_mme0=10.99.90.2
+export LTE_IP_epc_sgwc0=10.99.90.3
+export LTE_IP_epc_smf0=10.99.90.4
+export LTE_IP_epc_amf0=10.99.90.5
+export LTE_IP_epc_sgwu0=10.99.90.6
+export LTE_IP_epc_upf0=10.99.90.7
+export LTE_IP_epc_hss0=10.99.90.8
+export LTE_IP_epc_pcrf0=10.99.90.9
+export LTE_IP_epc_nrf0=10.99.90.10
+export LTE_IP_epc_ausf0=10.99.90.11
+export LTE_IP_epc_udm0=10.99.90.12
+export LTE_IP_epc_pcf0=10.99.90.13
+export LTE_IP_epc_nssf0=10.99.90.14
+export LTE_IP_epc_bsf0=10.99.90.15
+export LTE_IP_epc_udr0=10.99.90.20
+
+export LTE_TAP_ENABLE=0
+
+export LTE_LOCAL_IP="192.168.222.1"
+export LTE_TAP_TARGET_MAC="36:c6:a1:91:1a:65"
+export LTE_TAP_TARGET_IP="192.168.111.44"
+
+export LTE_TAP_DUMMY_GRE_IP1="10.99.99.1"
+export LTE_TAP_DUMMY_GRE_IP2="10.99.99.2"
+export LTE_TAP_DUMMY_GRE_MAC="fe:6a:0e:b0:87:e5"
+
+export LTE_VM_BRIDGE_INTERFACE="eth1"
+
+export LTE_PUBLIC_ROUTE_ENABLE=1
+export LTE_PUBLIC_ROUTE_INTERFACE="eth3"
+export LTE_PUBLIC_ROUTE_GATEWAY="192.168.2.1"
+export LTE_CAPTURE_INTERFACE="eth2"

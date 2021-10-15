@@ -1,0 +1,23 @@
+export LTE_BASEDIR=/opt/LTE/
+
+export LTE_IP_brran=10.99.90.128
+
+export LTE_IP_epc_mme0=10.99.90.2
+export LTE_IP_epc_amf0=10.99.90.5
+
+export LTE_IP_ran_gnb0=10.99.90.129
+
+export LTE_IP_ran_5gue1=10.99.90.130
+export LTE_IP_ran_5gue2=10.99.90.131
+export LTE_IP_ran_5gue3=10.99.90.132
+export LTE_IP_ran_5gue4=10.99.90.133
+
+export LTE_IP_ran_4gue1=10.99.90.140
+export LTE_IP_ran_4gue2=10.99.90.141
+export LTE_IP_ran_4gue3=10.99.90.142
+export LTE_IP_ran_4gue4=10.99.90.143
+
+export LTE_VM_BRIDGE_INTERFACE="eth1"
+
+export LTE_MCC=901
+export LTE_MNC=70

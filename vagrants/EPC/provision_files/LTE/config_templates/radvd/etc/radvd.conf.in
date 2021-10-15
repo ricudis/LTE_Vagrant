@@ -1,0 +1,10 @@
+interface ogstun
+{
+ AdvSendAdvert on;
+ prefix fd01:230:cafe::1/64
+ {
+  AdvOnLink on;
+  AdvAutonomous on;
+  AdvRouterAddr on;
+ };
+};
